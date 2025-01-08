@@ -8,4 +8,3 @@ At its core, this project embodies two important aims:
 _I'd love for you to make the most of this project - it's all about learning, helping, and growing in the open-source world._
 
 🚀 Feel free to get in touch with me for any further queries or support, happy to help :)
-# Devsecops
