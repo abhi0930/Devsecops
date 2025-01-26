@@ -1,12 +1,13 @@
 pipeline{
-    agent any
+    agent any    // Allocate any available Jenkins agent for this pipeline.
     environment{
-        SONAR_HOME= tool "sonar"
-        DOCKER_CREDENTIALS_ID = 'dckr_pat_pE9yCHQokBQLDlvI1s_Z_fzOf8Q'
+        // Define environment variables used throughout the pipeline.
+        SONAR_HOME= tool "sonar"    // Path to the SonarQube scanner tool.
+        DOCKER_CREDENTIALS_ID = 'dckr_pat_pE9yCHQokBQLDlvI1s_Z_fzOf8Q'    // Docker credentials ID for authentication.
         //TARGET_URL = 'https://medium.com/edureka/nagios-tutorial-e63e2a744cc8'
-        ZAP_PATH = '/var/lib/jenkins/ZAP_2.15.0/zap.sh'
-        ZAP_API_KEY = '33ufgoa3ig6r9sr2mmtcch3mk4'
-        ZAP_PORT = '8081'
+        ZAP_PATH = '/var/lib/jenkins/ZAP_2.15.0/zap.sh'    // Path to OWASP ZAP tool.
+        ZAP_API_KEY = '33ufgoa3ig6r9sr2mmtcch3mk4'    // API key for ZAP.
+        ZAP_PORT = '8081'    // Port for ZAP to run.
     }
     stages{
         
@@ -18,8 +19,8 @@ pipeline{
         
         stage ('trufflehog3') {
             steps {
-                sh 'trufflehog3 . -f json  -o truffelhog_output.json || true'
-                archiveArtifacts artifacts: 'truffelhog_output.json', fingerprint: true
+                sh 'trufflehog3 . -f json  -o truffelhog_output.json || true'    // Run Trufflehog to detect secrets in the codebase.
+                archiveArtifacts artifacts: 'truffelhog_output.json', fingerprint: true    // Archive the output for reference.
             }
         }
         
